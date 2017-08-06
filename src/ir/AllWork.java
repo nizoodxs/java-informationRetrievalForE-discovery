@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.concurrent.Task;
+import mainApp.Indexer;
 
 /**
  *
@@ -17,7 +18,9 @@ import javafx.concurrent.Task;
 public class AllWork {
 
     Unzipper unzipper = new Unzipper();
+    Parser parser = new Parser();
     String zipFilePath = new String();
+    String parsingPath = "C:\\testFiles\\unzipTemp";
 
     public AllWork(String filePath) {
         zipFilePath = filePath;
@@ -32,6 +35,8 @@ public class AllWork {
             public Void call() throws InterruptedException, IOException {
 
                 unzipper.unzip(zipFilePath);
+                parser.start();
+                Indexer.index();
                 
                 for (int i = 0; i < 10; i++) {
                     updateProgress(i, 10);
