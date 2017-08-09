@@ -6,10 +6,7 @@
 package ir;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.concurrent.Task;
-import mainApp.Indexer;
 
 /**
  *
@@ -43,6 +40,7 @@ public class AllWork {
                     Thread.sleep(200);
                 }
                 updateProgress(10, 10);
+                FileOperator.deleteTempZip();
                 return null;
             }
         };

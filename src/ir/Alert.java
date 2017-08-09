@@ -31,7 +31,7 @@ public class Alert {
         layout.setAlignment(Pos.CENTER);
 
         //Display window and wait for it to be closed before returning
-        Scene scene = new Scene(layout);
+        Scene scene = new Scene(layout,300,200);
         window.setScene(scene);
         window.showAndWait();
     }

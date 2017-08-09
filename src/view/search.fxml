@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewController.SearchController">
+   <children>
+      <Text layoutX="14.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="search found:" />
+      <JFXButton fx:id="btnExtract" layoutX="484.0" layoutY="342.0" onAction="#makeExtract" prefHeight="35.0" prefWidth="90.0" text="EXTRACT">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </JFXButton>
+      <JFXButton fx:id="btnCancel" layoutX="409.0" layoutY="347.0" onAction="#makeCancel" text="Cancel" />
+      <ListView fx:id="searchView" layoutX="21.0" layoutY="57.0" prefHeight="262.0" prefWidth="563.0" />
+   </children>
+</AnchorPane>

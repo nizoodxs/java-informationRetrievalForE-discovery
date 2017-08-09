@@ -5,7 +5,11 @@
  */
 package ir;
 
+import com.google.common.io.Files;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -36,6 +40,14 @@ public class IR extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        String dest = "C:\\extractedFiles";
+        Path path = Paths.get(dest);
+        if(!java.nio.file.Files.isDirectory(path)){
+            File file = new File(dest);
+            file.mkdir();
+        }
+        
         launch(args);
     }
         

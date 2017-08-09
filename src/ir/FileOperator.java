@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.codehaus.plexus.util.FileUtils;
 
 /**
  *
@@ -76,6 +77,11 @@ public class FileOperator {
         String folderName;
         folderName = fileType.replaceAll("/", "-");
         return folderName;
+    }
+    
+    public static void deleteTempZip() throws IOException{
+        String loc = "C:\\testFiles\\unzipTemp";
+        FileUtils.cleanDirectory(loc);
     }
     
 }

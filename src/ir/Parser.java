@@ -19,6 +19,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.DatabaseHandler;
 
 /**
  *
@@ -56,14 +57,17 @@ public class Parser {
             String fileContent = this.extractor.parseFile(file);
             HashMap<String, String> metadataMap = new HashMap<>();
             metadataMap = this.extractor.getMetadata(file);
-            Iterator it = metadataMap.entrySet().iterator();
-            StringBuilder completeMeta = new StringBuilder();
-            while (it.hasNext()) {
-                Map.Entry pair = (Map.Entry) it.next();
-                completeMeta.append("\n").append(pair.getKey()).append(" = ").append(pair.getValue());
-//                          System.out.println(pair.getKey() + " = " + pair.getValue());
-                it.remove(); // avoids a ConcurrentModificationException
-            }
+            
+            DatabaseHandler.insertMetadata(metadataMap,fileName,fileType);
+            
+//            Iterator it = metadataMap.entrySet().iterator();
+//            StringBuilder completeMeta = new StringBuilder();
+//            while (it.hasNext()) {
+//                Map.Entry pair = (Map.Entry) it.next();
+//                completeMeta.append("\n").append(pair.getKey()).append(" = ").append(pair.getValue());
+////                          System.out.println(pair.getKey() + " = " + pair.getValue());
+//                it.remove(); // avoids a ConcurrentModificationException
+//            }
 //                        System.out.println("file name : "+fileName+" "+"file content : "+fileContent+" "+"file type"+fileType);
             this.fileOperator.createFile(fileName, fileContent, fileType);
 //                      System.out.println(fileType);
