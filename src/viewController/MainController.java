@@ -30,6 +30,7 @@ import ir.Searcher;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javafx.scene.control.Button;
+import javafx.stage.Modality;
 
 /**
  * FXML Controller class
@@ -37,9 +38,9 @@ import javafx.scene.control.Button;
  * @author Admin
  */
 public class MainController implements Initializable {
-
+    
     private String filePath = "";
-
+    
     @FXML
     private JFXButton b1;
     @FXML
@@ -62,7 +63,7 @@ public class MainController implements Initializable {
     private ListView<String> searchList;
     @FXML
     private Button btnExtract;
-
+    
     ArrayList<String> resultList = new ArrayList<>();
 
     /**
@@ -72,35 +73,36 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    
     @FXML
     private void onHome(ActionEvent event) throws IOException {
         Stage window = (Stage) btnSearch.getScene().getWindow();
         window.close();
         loadWindow("/view/main.fxml");
     }
-
+    
     @FXML
-    private void onSearch(ActionEvent event) {
+    private void onSettings(ActionEvent event) throws IOException {
+        loadWindow2("/view/settings.fxml");
     }
-
+    
     @FXML
     private void onHelp(ActionEvent event) throws IOException {
         loadWindow2("/view/help.fxml");
     }
-
+    
     @FXML
     private void onLogout(ActionEvent event) throws IOException {
-          Stage window = (Stage) mylistview.getScene().getWindow();
-          window.close();
-          loadWindow("/view/login.fxml");
+        Stage window = (Stage) mylistview.getScene().getWindow();
+        window.close();
+        loadWindow("/view/login.fxml");
     }
-
+    
     @FXML
     private void onExit(ActionEvent event) {
         Platform.exit();
     }
-
+    
     @FXML
     private void addfiles(ActionEvent event) {
         FileChooser fc = new FileChooser();
@@ -114,27 +116,27 @@ public class MainController implements Initializable {
             System.out.println("File is not valid");
         }
     }
-
+    
     @FXML
     private void unzipitems(ActionEvent event) throws IOException {
         if (!filePath.isEmpty()) {
             AllWork allWork = new AllWork(filePath);
             allWork.startWork();
-
+            
         }
     }
-
+    
     @FXML
     private void onSearchPressed(ActionEvent event) throws IOException, ParseException {
         String query = searchArea.getText();
-
+        
         if (query != null) {
-
+            
             ArrayList<String> gotList = new ArrayList<>();
-
+            
             gotList = Searcher.search(query);
             this.resultList.addAll(gotList);
-
+            
             for (Iterator<String> iterator = gotList.iterator(); iterator.hasNext();) {
                 String next = iterator.next();
                 int startIndex = next.lastIndexOf("\\") + 1;
@@ -148,30 +150,32 @@ public class MainController implements Initializable {
 //        DisplaySearch sSearch = new DisplaySearch();
 //        sSearch.display(query);
     }
-
+    
     private void loadWindow(String loc) throws IOException {
         Stage window = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource(loc));
-
+        
         Scene scene = new Scene(root);
-
+        
         window.initStyle(StageStyle.UNDECORATED);
         window.setScene(scene);
         window.show();
-
+        
     }
-        private void loadWindow2(String loc) throws IOException {
+
+    private void loadWindow2(String loc) throws IOException {
         Stage window = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource(loc));
-
+        
         Scene scene = new Scene(root);
-
+        
+        window.initModality(Modality.APPLICATION_MODAL);
         window.initStyle(StageStyle.UTILITY);
         window.setScene(scene);
         window.show();
-
+        
     }
-
+    
     @FXML
     private void onClickExtract(ActionEvent event) throws Exception {
         for (Iterator<String> iterator = this.resultList.iterator(); iterator.hasNext();) {
@@ -179,8 +183,8 @@ public class MainController implements Initializable {
             File file = new File(next);
             PDFtoText.convertTextToPDF(file);
         }
-
+        
         Alert.display("Completed", "Extraction completed at location C:\\extractedFiles");
     }
-
+    
 }

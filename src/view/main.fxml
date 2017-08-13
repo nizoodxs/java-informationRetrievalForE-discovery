@@ -44,14 +44,14 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="b3" buttonType="RAISED" layoutX="10.0" layoutY="197.0" onAction="#onSearch" prefHeight="60.0" prefWidth="155.0" ripplerFill="#00abf9" style="-fx-background-color: #f1f1f1;" text="SEARCH">
+            <JFXButton fx:id="b3" buttonType="RAISED" layoutX="10.0" layoutY="197.0" onAction="#onSettings" prefHeight="60.0" prefWidth="155.0" ripplerFill="#00abf9" style="-fx-background-color: #f1f1f1;" text="SETTINGS">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/if_icon-111-search_314478.png" />
+                        <Image url="@../icons/settings.png" />
                      </image>
                   </ImageView>
                </graphic>
